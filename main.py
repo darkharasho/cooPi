@@ -1,37 +1,7 @@
 import time
+from lib import cfg
 from lib.pca9685 import PCA9685
 
-# Raspi PCA9685 16-Channel PWM Servo Driver
-# Registers/etc.
-SUBADR1 = 0x02
-SUBADR2 = 0x03
-SUBADR3 = 0x04
-MODE1 = 0x00
-MODE2 = 0x01
-PRESCALE = 0xFE
-LED0_ON_L = 0x06
-LED0_ON_H = 0x07
-LED0_OFF_L = 0x08
-LED0_OFF_H = 0x09
-ALLLED_ON_L = 0xFA
-ALLLED_ON_H = 0xFB
-ALLLED_OFF_L = 0xFC
-ALLLED_OFF_H = 0xFD
-
-SERVO_MOTOR_PWM3 = 6
-SERVO_MOTOR_PWM4 = 7
-SERVO_MOTOR_PWM5 = 8
-SERVO_MOTOR_PWM6 = 9
-SERVO_MOTOR_PWM7 = 10
-SERVO_MOTOR_PWM8 = 11
-
-DC_MOTOR_PWM1 = 0
-DC_MOTOR_INA1 = 2
-DC_MOTOR_INA2 = 1
-
-DC_MOTOR_PWM2 = 5
-DC_MOTOR_INB1 = 3
-DC_MOTOR_INB2 = 4
 
 if __name__ == '__main__':
     """for servo motor:
@@ -59,17 +29,17 @@ if __name__ == '__main__':
         """The following code is applied to
         DC motor control
         """
-        pwm.setServoPulse(DC_MOTOR_PWM1, 15000)  # for TB6612 set speed
+        pwm.setServoPulse(cfg.DC_MOTOR_PWM1, 15000)  # for TB6612 set speed
         # CCW
-        pwm.setServoPulse(DC_MOTOR_INA1, 0)  # set INA1 L
-        pwm.setServoPulse(DC_MOTOR_INA2, 19999)  # set INA2 H
+        pwm.setServoPulse(cfg.DC_MOTOR_INA1, 0)  # set INA1 L
+        pwm.setServoPulse(cfg.DC_MOTOR_INA2, 19999)  # set INA2 H
         print("M1 rotate")
         time.sleep(2)
         # CW
-        pwm.setServoPulse(DC_MOTOR_INA1, 19999)  # set INA1 H
-        pwm.setServoPulse(DC_MOTOR_INA2, 0)  # set INA2 L
+        pwm.setServoPulse(cfg.DC_MOTOR_INA1, 19999)  # set INA1 H
+        pwm.setServoPulse(cfg.DC_MOTOR_INA2, 0)  # set INA2 L
         print("M1 rotate opposite")
         time.sleep(2)
-        pwm.setServoPulse(DC_MOTOR_PWM1, 0)  # for TB6612 set speed to 0, stop
+        pwm.setServoPulse(cfg.DC_MOTOR_PWM1, 0)  # for TB6612 set speed to 0, stop
         print("M1 stop")
         time.sleep(2)

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="422335c1-b939-4c62-b823-da0bc4684e38" name="coopi">
+        <fileTransfer accessType="SFTP" host="coopi.local" port="22" sshConfigId="5fd8a759-417d-408f-9c28-22bb7e5ffdb4" sshConfig="coopi@coopi.local:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
