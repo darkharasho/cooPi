@@ -227,6 +227,22 @@ files = [
 ]
 
 [[package]]
+name = "smbus2"
+version = "0.4.3"
+description = "smbus2 is a drop-in replacement for smbus-cffi/smbus-python in pure Python"
+optional = false
+python-versions = "*"
+files = [
+    {file = "smbus2-0.4.3-py2.py3-none-any.whl", hash = "sha256:a2fc29cfda4081ead2ed61ef2c4fc041d71dd40a8d917e85216f44786fca2d1d"},
+    {file = "smbus2-0.4.3.tar.gz", hash = "sha256:36f2288a8e1a363cb7a7b2244ec98d880eb5a728a2494ac9c71e9de7bf6a803a"},
+]
+
+[package.extras]
+docs = ["sphinx (>=1.5.3)"]
+qa = ["flake8"]
+test = ["mock", "nose"]
+
+[[package]]
 name = "tzdata"
 version = "2024.1"
 description = "Provider of IANA time zone data"
@@ -259,7 +275,20 @@ files = [
     {file = "wcwidth-0.2.13.tar.gz", hash = "sha256:72ea0c06399eb286d978fdedb6923a9eb47e1c486ce63e9b4e64fc18303972b5"},
 ]
 
+[[package]]
+name = "wiringpi"
+version = "2.60.1"
+description = "A python interface to WiringPi 2.0 library which allows for easily interfacing with the GPIO pins of the Raspberry Pi. Also supports i2c and SPI."
+optional = false
+python-versions = "*"
+files = [
+    {file = "wiringpi-2.60.1-cp35-cp35m-linux_armv7l.whl", hash = "sha256:267120d890fd67ef3e630e52e8b671f9bc1a52ef227fcb5fff44cfe124ec4a4e"},
+    {file = "wiringpi-2.60.1-cp36-cp36m-linux_armv7l.whl", hash = "sha256:daf0570b5928f8824c366afedfacd78f2948577b527b43c5e525265dd5e7ad60"},
+    {file = "wiringpi-2.60.1-cp37-cp37m-linux_armv7l.whl", hash = "sha256:7a54e5a879b828eb113228b835a5dbf13695aae06c206ec11940641346fabc24"},
+    {file = "wiringpi-2.60.1.tar.gz", hash = "sha256:b0c65d5d7c65d0bbef25c56d90237ca4098b1edabc528fb48dc6b61d62cd4b7d"},
+]
+
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "83db2a7ef357dd49d1e59ca23243a8e34c625d2d7197fab9a0e1f0c49f3ccd0c"
+content-hash = "236b31a64a5a02823b6f83400cb595086f9f48500ea90f39b5decc244810e944"

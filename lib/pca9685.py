@@ -1,12 +1,13 @@
 import time
 import math
-import smbus
+# import smbus
+import smbus2
 from lib import config
 
 
 class PCA9685:
     def __init__(self):
-        self.i2c = smbus.SMBus(1)
+        self.i2c = smbus2.SMBus(1)
         self.dev_addr = 0x7f
         self.write_reg(config.MODE1, 0x00)
 
