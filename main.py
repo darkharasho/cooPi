@@ -1,7 +1,10 @@
 import time
-from lib import cfg
+from lib.cfg import *
 from lib.pca9685 import PCA9685
+from celery import Celery
 
+
+app = Celery('tasks', broker='pyamqp://guest@localhost//')
 
 if __name__ == '__main__':
     """for servo motor:
