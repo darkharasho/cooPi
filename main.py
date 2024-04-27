@@ -1,9 +1,7 @@
 import time
+import schedule
 from lib import config
 from lib.pca9685 import PCA9685
-from celery import Celery
-
-app = Celery('tasks', broker='pyamqp://guest@localhost//')
 
 
 def open():

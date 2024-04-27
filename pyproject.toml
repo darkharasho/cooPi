@@ -7,7 +7,6 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
-celery = "^5.4.0"
 wiringpi = "^2.60.1"
 smbus2 = "^0.4.3"
 
