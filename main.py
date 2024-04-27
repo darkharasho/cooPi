@@ -76,7 +76,8 @@ if __name__ == '__main__':
 
     try:
         while True:
-            if int(datetime.now().strftime("%M")) % health_check_timer == 0:
+            if (int(datetime.now().strftime("%M")) % health_check_timer == 0 &
+                    0 == int(datetime.now().strftime("%S"))):
                 logging.info(f"Health check")
             schedule.run_pending()
             time.sleep(1)
