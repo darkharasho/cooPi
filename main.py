@@ -4,7 +4,7 @@ from lib import config
 from lib.pca9685 import PCA9685
 
 
-def open():
+def open_door():
     pwm = PCA9685()
     pwm.setPWMFreq(50)  # for servo
 
@@ -17,7 +17,7 @@ def open():
     time.sleep(8)
 
 
-def close():
+def close_door():
     print("close")
 
     pwm = PCA9685()
@@ -58,8 +58,9 @@ if __name__ == '__main__':
         DC motor control
         """
 
-        schedule.every().day.at("15:28").do(open)
+        schedule.every().day.at("15:32:00").do(open_door())
+        schedule.every().day.at("15:33:00").do(close_door())
 
-        schedule.every().day.at("07:00").do(open)
+        schedule.every().day.at("07:00").do(open_door())
 
-        schedule.every().day.at("20:00").do(close)
+        schedule.every().day.at("20:00").do(close_door())
