@@ -29,7 +29,7 @@ class PCA9685:
         print('lodmode:', oldmode)
         newmode = (oldmode & 0x7F) | 0x10  # sleep
         self.write_reg(config.MODE1, newmode)  # go to sleep
-        self.write_reg(PRESCALE, int(math.floor(prescale)))
+        self.write_reg(config.PRESCALE, int(math.floor(prescale)))
         self.write_reg(config.MODE1, oldmode)
         time.sleep(0.005)
         self.write_reg(config.MODE1, oldmode | 0x80)  # 0x80
