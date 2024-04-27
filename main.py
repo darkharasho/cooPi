@@ -16,7 +16,7 @@ def open_door():
     pwm.setServoPulse(config.DC_MOTOR_INA2, 0)  # set INA2 H
     print("M1 rotate")
     time.sleep(8)
-    pwm.setServoPulse(DC_MOTOR_PWM1, 0)
+    pwm.setServoPulse(config.DC_MOTOR_PWM1, 0)
 
 
 def close_door():
@@ -56,8 +56,8 @@ if __name__ == '__main__':
     pwm.setPWMFreq(50)  # for servo
     close_door()
 
-    schedule.every().day.at("15:45:00").do(open_door)
-    schedule.every().day.at("15:46:00").do(close_door)
+    schedule.every().day.at("15:47:00").do(open_door)
+    schedule.every().day.at("15:48:00").do(close_door)
 
     schedule.every().day.at("07:00").do(open_door)
 
