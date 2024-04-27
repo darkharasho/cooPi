@@ -59,8 +59,8 @@ if __name__ == '__main__':
             DC motor control
             """
 
-            schedule.every().day.at("15:32:00").do(open_door())
-            schedule.every().day.at("15:33:00").do(close_door())
+            schedule.every().day.at("15:35:00").do(open_door())
+            schedule.every().day.at("15:36:00").do(close_door())
 
             schedule.every().day.at("07:00").do(open_door())
 
