@@ -4,6 +4,9 @@ from datetime import datetime
 from lib import config
 from lib.pca9685 import PCA9685
 
+OPEN_TIME = "06:00:00"
+CLOSE_TIME = "21:00:00"
+
 
 def door_control(status: str):
     pwm = PCA9685()
@@ -50,8 +53,12 @@ if __name__ == '__main__':
     H/L   H/L  H/L   L    OFF    OFF    standby
     """
 
-    schedule.every().day.at("06:00:00").do(lambda: door_control("open"))
-    schedule.every().day.at("21:00:00").do(lambda: door_control("close"))
+    print("Automated Coop Door Schedule Running")
+    print(f"Opens at: {OPEN_TIME}")
+    print(f"Closes at: {CLOSE_TIME}")
+
+    schedule.every().day.at(OPEN_TIME).do(lambda: door_control("open"))
+    schedule.every().day.at(CLOSE_TIME).do(lambda: door_control("close"))
 
     try:
         while True:
