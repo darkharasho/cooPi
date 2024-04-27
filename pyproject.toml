@@ -9,6 +9,7 @@ readme = "README.md"
 python = "^3.10"
 wiringpi = "^2.60.1"
 smbus2 = "^0.4.3"
+schedule = "^1.2.1"
 
 
 [build-system]
