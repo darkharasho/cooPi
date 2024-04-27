@@ -53,14 +53,18 @@ if __name__ == '__main__':
     pwm = PCA9685()
     pwm.setPWMFreq(50)  # for servo
 
-    while True:
-        """The following code is applied to
-        DC motor control
-        """
+    try:
+        while True:
+            """The following code is applied to
+            DC motor control
+            """
 
-        schedule.every().day.at("15:32:00").do(open_door())
-        schedule.every().day.at("15:33:00").do(close_door())
+            schedule.every().day.at("15:32:00").do(open_door())
+            schedule.every().day.at("15:33:00").do(close_door())
 
-        schedule.every().day.at("07:00").do(open_door())
+            schedule.every().day.at("07:00").do(open_door())
 
-        schedule.every().day.at("20:00").do(close_door())
+            schedule.every().day.at("20:00").do(close_door())
+
+    except KeyboardInterrupt:
+        print("Keyboard interrupt detected. Exiting...")
