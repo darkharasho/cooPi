@@ -34,13 +34,13 @@ if __name__ == '__main__':
         """
         pwm.setServoPulse(config.DC_MOTOR_PWM1, 15000)  # for TB6612 set speed
         # CCW
-        pwm.setServoPulse(config.DC_MOTOR_INA1, 50000)  # set INA1 L
+        pwm.setServoPulse(config.DC_MOTOR_INA1, 150000)  # set INA1 L
         pwm.setServoPulse(config.DC_MOTOR_INA2, 0)  # set INA2 H
         print("M1 rotate")
         time.sleep(2)
         # CW
         pwm.setServoPulse(config.DC_MOTOR_INA1, 0)  # set INA1 H
-        pwm.setServoPulse(config.DC_MOTOR_INA2, 50000)  # set INA2 L
+        pwm.setServoPulse(config.DC_MOTOR_INA2, 150000)  # set INA2 L
         print("M1 rotate opposite")
         time.sleep(2)
         pwm.setServoPulse(config.DC_MOTOR_PWM1, 0)  # for TB6612 set speed to 0, stop
