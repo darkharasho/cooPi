@@ -9,7 +9,9 @@ def door_control(status: str):
     pwm = PCA9685()
     pwm.setPWMFreq(50)  # for servo
 
-    print("Door control activated")
+    current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    print(f"{current_time} - Door control activated")
+
     pwm.setServoPulse(config.DC_MOTOR_PWM1, 15000)  # for TB6612 set speed
 
     if status == 'open':
@@ -26,35 +28,6 @@ def door_control(status: str):
         pwm.setServoPulse(config.DC_MOTOR_PWM1, 0)  # for TB6612 set speed to 0, stop
     else:
         print("Invalid status")
-
-def open_door():
-    pwm = PCA9685()
-    pwm.setPWMFreq(50)  # for servo
-
-    print("open")
-    pwm.setServoPulse(config.DC_MOTOR_PWM1, 15000)  # for TB6612 set speed
-    # CCW
-    pwm.setServoPulse(config.DC_MOTOR_INA1, 19999)  # set INA1 L
-    pwm.setServoPulse(config.DC_MOTOR_INA2, 0)  # set INA2 H
-    print("M1 rotate")
-    time.sleep(8)
-    pwm.setServoPulse(config.DC_MOTOR_PWM1, 0)
-
-
-def close_door():
-    print("close")
-
-    pwm = PCA9685()
-    pwm.setPWMFreq(50)  # for servo
-
-    # CW
-    pwm.setServoPulse(config.DC_MOTOR_PWM1, 15000)  # for TB6612 set speed
-
-    pwm.setServoPulse(config.DC_MOTOR_INA1, 0)  # set INA1 H
-    pwm.setServoPulse(config.DC_MOTOR_INA2, 19999)  # set INA2 L
-    print("M1 rotate opposite")
-    time.sleep(8)
-    pwm.setServoPulse(config.DC_MOTOR_PWM1, 0)  # for TB6612 set speed to 0, stop
 
 
 if __name__ == '__main__':
@@ -76,21 +49,14 @@ if __name__ == '__main__':
     L     L    H    H    OFF    OFF      STOP
     H/L   H/L  H/L   L    OFF    OFF    standby
     """
-    close_door()
 
-    schedule.every().day.at("15:55:00").do(lambda: door_control("open"))
-    schedule.every().day.at("15:56:00").do(lambda: door_control("close"))
-
-    # schedule.every().day.at("06:00").do(open_door)
-
-    # schedule.every().day.at("21:00").do(close_door)
+    schedule.every().day.at("06:00:00").do(lambda: door_control("open"))
+    schedule.every().day.at("21:00:00").do(lambda: door_control("close"))
 
     try:
         while True:
-            current_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            print(f"{current_time}")
             schedule.run_pending()
-            time.sleep(1)
+            time.sleep(60)
 
     except KeyboardInterrupt:
         print("Keyboard interrupt detected. Exiting...")
