@@ -58,7 +58,6 @@ if __name__ == '__main__':
             """The following code is applied to
             DC motor control
             """
-            close_door()
 
             schedule.every().day.at("15:40:00").do(open_door)
             schedule.every().day.at("15:41:00").do(close_door)
