@@ -72,10 +72,14 @@ if __name__ == '__main__':
     schedule.every().day.at(OPEN_TIME).do(lambda: door_control("open"))
     schedule.every().day.at(CLOSE_TIME).do(lambda: door_control("close"))
 
+    health_check_timer = 10
+
     try:
         while True:
+            if int(datetime.now().strftime("%M")) % health_check_timer == 0:
+                logging.info(f"Health check")
             schedule.run_pending()
-            time.sleep(60)
+            time.sleep(1)
 
     except KeyboardInterrupt:
         print("Keyboard interrupt detected. Exiting...")
