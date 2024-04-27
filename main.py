@@ -78,8 +78,8 @@ if __name__ == '__main__':
     """
     close_door()
 
-    schedule.every().day.at("15:53:00").do(lambda: door_control("open"))
-    schedule.every().day.at("15:54:00").do(lambda: door_control("close"))
+    schedule.every().day.at("15:55:00").do(lambda: door_control("open"))
+    schedule.every().day.at("15:56:00").do(lambda: door_control("close"))
 
     # schedule.every().day.at("06:00").do(open_door)
 
