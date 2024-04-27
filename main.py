@@ -59,12 +59,12 @@ if __name__ == '__main__':
             DC motor control
             """
 
-            schedule.every().day.at("15:40:00").do(open_door())
-            schedule.every().day.at("15:41:00").do(close_door())
+            schedule.every().day.at("15:40:00").do(open_door)
+            schedule.every().day.at("15:41:00").do(close_door)
 
-            schedule.every().day.at("07:00").do(open_door())
+            schedule.every().day.at("07:00").do(open_door)
 
-            schedule.every().day.at("20:00").do(close_door())
+            schedule.every().day.at("20:00").do(close_door)
 
     except KeyboardInterrupt:
         print("Keyboard interrupt detected. Exiting...")
