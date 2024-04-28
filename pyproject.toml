@@ -4,7 +4,6 @@ version = "0.1.0"
 description = ""
 authors = ["Your Name <you@example.com>"]
 readme = "README.md"
-package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -12,8 +11,10 @@ wiringpi = "^2.60.1"
 smbus2 = "^0.4.3"
 schedule = "^1.2.1"
 logging = "^0.4.9.6"
+argparse = "^1.4.0"
 
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+package-mode = false

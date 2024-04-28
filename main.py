@@ -1,6 +1,7 @@
 import time
 import schedule
 import logging
+import argparse
 from datetime import datetime
 from lib import config
 from lib.pca9685 import PCA9685
@@ -41,47 +42,44 @@ def door_control(status: str):
         logging.warn("Invalid status")
 
 
+def main():
+    parser = argparse.ArgumentParser(description='Automated Chicken Coop Door')
+    parser.add_argument('-m', '--mode',
+                        choices=['open', 'close', 'auto'],
+                        default='auto', help='Choose mode of operation')
+
+    args = parser.parse_args()
+
+    if args.mode == 'open':
+        door_control("open")
+    elif args.mode == 'close':
+        door_control("close")
+    elif args.mode == 'auto':
+        print("Automated Coop Door Schedule Running")
+        print(f"Opens at: {OPEN_TIME}")
+        print(f"Closes at: {CLOSE_TIME}")
+
+        logging.info("Automated Coop Door Schedule Running")
+        logging.info(f"Opens at: {OPEN_TIME}")
+        logging.info(f"Closes at: {CLOSE_TIME}")
+
+        schedule.every().day.at(OPEN_TIME).do(lambda: door_control("open"))
+        schedule.every().day.at(CLOSE_TIME).do(lambda: door_control("close"))
+
+        health_check_timer = 10
+
+        try:
+            while True:
+                if (int(datetime.now().strftime("%M")) % health_check_timer == 0 &
+                        0 == int(datetime.now().strftime("%S"))):
+                    logging.info(f"Health check")
+                schedule.run_pending()
+                time.sleep(1)
+
+        except KeyboardInterrupt:
+            print("Keyboard interrupt detected. Exiting...")
+            logging.warning("Keyboard interrupt detected")
+
+
 if __name__ == '__main__':
-    """for servo motor:
-    the high part of the pulse is T
-    T = 0.5ms => 0   degree
-    T = 1.0ms => 45  degree
-    T = 1.5ms => 90  degree
-    T = 2.0ms => 135 degree
-    T = 2.5ms => 180 degree
-
-    for 2 channel DC motor driven by TB6612FNG
-    IN1   IN2  PWM  STBY  OUT1   OUT2      MODE
-    H     H   H/L   H     L      L    short brake
-    L     H    H    H     L      H       CCW
-    L     H    L    H     L      L    short brake
-    H     L    H    H     H      L       CW
-    H     L    L    H     L      L    short brake
-    L     L    H    H    OFF    OFF      STOP
-    H/L   H/L  H/L   L    OFF    OFF    standby
-    """
-
-    print("Automated Coop Door Schedule Running")
-    print(f"Opens at: {OPEN_TIME}")
-    print(f"Closes at: {CLOSE_TIME}")
-
-    logging.info("Automated Coop Door Schedule Running")
-    logging.info(f"Opens at: {OPEN_TIME}")
-    logging.info(f"Closes at: {CLOSE_TIME}")
-
-    schedule.every().day.at(OPEN_TIME).do(lambda: door_control("open"))
-    schedule.every().day.at(CLOSE_TIME).do(lambda: door_control("close"))
-
-    health_check_timer = 10
-
-    try:
-        while True:
-            if (int(datetime.now().strftime("%M")) % health_check_timer == 0 &
-                    0 == int(datetime.now().strftime("%S"))):
-                logging.info(f"Health check")
-            schedule.run_pending()
-            time.sleep(1)
-
-    except KeyboardInterrupt:
-        print("Keyboard interrupt detected. Exiting...")
-        logging.warning("Keyboard interrupt detected")
+    main()
