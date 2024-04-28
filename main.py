@@ -26,17 +26,21 @@ def door_control(status: str):
     if status == 'open':
         pwm.setServoPulse(config.DC_MOTOR_INA1, 19999)  # set INA1 L
         pwm.setServoPulse(config.DC_MOTOR_INA2, 0)  # set INA2 H
-        print("M1 open")
-        logging.info("M1 open")
+        print("[OPEN] Start")
+        logging.info("[OPEN] Start")
         time.sleep(8)
         pwm.setServoPulse(config.DC_MOTOR_PWM1, 0)
+        print("[OPEN] Finished")
+        logging.info("[OPEN] Finished")
     elif status == 'close':
         pwm.setServoPulse(config.DC_MOTOR_INA1, 0)  # set INA1 H
         pwm.setServoPulse(config.DC_MOTOR_INA2, 19999)  # set INA2 L
-        print("M1 close")
-        logging.info("M1 close")
+        print("[CLOSE] Start")
+        logging.info("[CLOSE] Start")
         time.sleep(8)
         pwm.setServoPulse(config.DC_MOTOR_PWM1, 0)  # for TB6612 set speed to 0, stop
+        print("[CLOSE] Finished")
+        logging.info("[CLOSE] Finished")
     else:
         print("Invalid status")
         logging.warn("Invalid status")
