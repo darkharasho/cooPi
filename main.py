@@ -35,7 +35,7 @@ def door_control(status: str):
     elif status == 'close':
         warning_close(pwm)
 
-        pwm.setServoPulse(config.DC_MOTOR_PWM1, 150)  # for TB6612 set speed
+        pwm.setServoPulse(config.DC_MOTOR_PWM1, 10000)  # for TB6612 set speed
 
         pwm.setServoPulse(config.DC_MOTOR_INA1, 0)  # set INA1 H
         pwm.setServoPulse(config.DC_MOTOR_INA2, 19999)  # set INA2 L
