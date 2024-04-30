@@ -34,6 +34,7 @@ def door_control(status: str):
         logging.info("[OPEN] Finished")
     elif status == 'close':
         warning_close(pwm)
+        warning_close(pwm, 4)
 
         pwm.setServoPulse(config.DC_MOTOR_PWM1, 19999)  # for TB6612 set speed
 
@@ -41,7 +42,7 @@ def door_control(status: str):
         pwm.setServoPulse(config.DC_MOTOR_INA2, 19999)  # set INA2 L
         print("[CLOSE] Start")
         logging.info("[CLOSE] Start")
-        time.sleep(8)
+        time.sleep(7)
         pwm.setServoPulse(config.DC_MOTOR_PWM1, 0)  # for TB6612 set speed to 0, stop
         print("[CLOSE] Finished")
         logging.info("[CLOSE] Finished")
@@ -49,13 +50,13 @@ def door_control(status: str):
         print("Invalid status")
         logging.warn("Invalid status")
 
-def warning_close(pwm):
+def warning_close(pwm, timer=2):
     print("[CLOSE] Warning")
     logging.info("[CLOSE] Warning")
     # Partially close the door to warn
     pwm.setServoPulse(config.DC_MOTOR_INA1, 0)  # set INA1 H
     pwm.setServoPulse(config.DC_MOTOR_INA2, 19999)  # set INA2 L
-    time.sleep(2)
+    time.sleep(timer)
 
     # Open the door fully
     pwm.setServoPulse(config.DC_MOTOR_INA1, 19999)  # set INA1 H
