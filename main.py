@@ -33,6 +33,8 @@ def door_control(status: str):
         print("[OPEN] Finished")
         logging.info("[OPEN] Finished")
     elif status == 'close':
+        warning_close(pwm)
+
         pwm.setServoPulse(config.DC_MOTOR_INA1, 0)  # set INA1 H
         pwm.setServoPulse(config.DC_MOTOR_INA2, 19999)  # set INA2 L
         print("[CLOSE] Start")
@@ -44,6 +46,17 @@ def door_control(status: str):
     else:
         print("Invalid status")
         logging.warn("Invalid status")
+
+def warning_close(pwm):
+    print("[CLOSE] Warning")
+    logging.info("[CLOSE] Warning")
+    pwm.setServoPulse(config.DC_MOTOR_INA1, 0)  # set INA1 H
+    pwm.setServoPulse(config.DC_MOTOR_INA2, 19999)  # set INA2 L
+    time.sleep(1)
+
+    pwm.setServoPulse(config.DC_MOTOR_INA1, 19999)  # set INA1 H
+    pwm.setServoPulse(config.DC_MOTOR_INA2, 0)  # set INA2 L
+    time.sleep(1)
 
 
 def main():
