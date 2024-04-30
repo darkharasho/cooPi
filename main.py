@@ -48,7 +48,7 @@ def door_control(status: str):
         pwm.setServoPulse(config.DC_MOTOR_INA2, 19999)  # set INA2 L
         print("[CLOSE] Start")
         logging.info("[CLOSE] Start")
-        time.sleep(10)
+        time.sleep(30)
         pwm.setServoPulse(config.DC_MOTOR_PWM1, 0)  # for TB6612 set speed to 0, stop
         print("[CLOSE] Finished")
         logging.info("[CLOSE] Finished")
