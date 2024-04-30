@@ -36,7 +36,7 @@ def door_control(status: str):
         print("[CLOSE] Start")
         logging.info("[CLOSE] Start")
         for i in [3, 4, 5, 6]:
-            warning_close(pmw, i)
+            warning_close(pwm, i)
         print("[CLOSE] Finished")
         logging.info("[CLOSE] Finished")
         # warning_close(pwm)
