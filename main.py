@@ -33,22 +33,22 @@ def door_control(status: str):
         print("[OPEN] Finished")
         logging.info("[OPEN] Finished")
     elif status == 'close':
-        print("[CLOSE] Start")
-        logging.info("[CLOSE] Start")
-        for i in [3, 4]:
-            warning_close(pwm, i)
-        print("[CLOSE] Finished")
-        logging.info("[CLOSE] Finished")
-        # warning_close(pwm)
-        # warning_close(pwm, 3)
-        #
-        pwm.setServoPulse(config.DC_MOTOR_PWM1, 19999)  # for TB6612 set speed
+        # print("[CLOSE] Start")
+        # logging.info("[CLOSE] Start")
+        # for i in [3, 4]:
+        #     warning_close(pwm, i)
+        # print("[CLOSE] Finished")
+        # logging.info("[CLOSE] Finished")
+        # # warning_close(pwm)
+        # # warning_close(pwm, 3)
+        # #
+        pwm.setServoPulse(config.DC_MOTOR_PWM1, 7000)  # for TB6612 set speed
 
         pwm.setServoPulse(config.DC_MOTOR_INA1, 0)  # set INA1 H
         pwm.setServoPulse(config.DC_MOTOR_INA2, 19999)  # set INA2 L
         print("[CLOSE] Start")
         logging.info("[CLOSE] Start")
-        time.sleep(3)
+        time.sleep(10)
         pwm.setServoPulse(config.DC_MOTOR_PWM1, 0)  # for TB6612 set speed to 0, stop
         print("[CLOSE] Finished")
         logging.info("[CLOSE] Finished")
